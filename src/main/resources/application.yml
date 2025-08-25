@@ -4,7 +4,11 @@ server:
 spring:
   application:
     name: file-processor
-  kafka:
-    bootstrap-servers: localhost:9092
-    consumer:
-      group-id: processor-id
+  profiles:
+    active: local
+  config:
+    import: configserver:http://localhost:8888
+  cloud:
+    config:
+      enabled: true
+      fail-fast: true
